@@ -1,9 +1,10 @@
-import './App.css';
+import react from 'react';
+import NavBar from '../components/NavBar/Navbar';
 
 function App() {
   return (
     <div className='App'>
-      <div>FIRST DATA</div>
+      <NavBar />
     </div>
   );
 }
