@@ -2,13 +2,18 @@ import React, { useEffect } from 'react';
 import Card from '../../components/Card/Card';
 import PlanetsService from '../../services/PlanetsService';
 import CheckboxComponent from '../../components/Checkbox/Checkbox';
+import { useQuery } from 'react-query';
 
 const PlanetsPage = () => {
-  useEffect(() => {
-    PlanetsService.getPlanets()
-      .then((res) => console.log('res ==> ', res))
-      .catch((err) => err);
-  }, []);
+  const getPlanets = async () => {
+    const res = await PlanetsService.myFetch();
+
+    return res.json();
+  };
+
+  const { data, status } = useQuery('planets', getPlanets);
+
+  console.log('data ==> ', data);
 
   return (
     <>
