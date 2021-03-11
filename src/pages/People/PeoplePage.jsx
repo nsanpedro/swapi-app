@@ -1,14 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PeopleService from '../../services/PeopleService';
 import CheckboxComponent from '../../components/Checkbox/Checkbox';
 import Card from '../../components/Card/Card';
+import Spinner from '../../components/Spinner/Spinner';
+import { useQuery } from 'react-query';
 
 const PeoplePage = () => {
-  useEffect(() => {
-    PeopleService.getPeople()
-      .then((res) => console.log('res ==> ', res))
-      .catch((err) => err);
-  }, []);
+  const getPeople = async () => {
+    const res = await PeopleService.getPeople();
+
+    return res.json();
+  };
+
+  const { data, status } = useQuery('people', getPeople);
+
+  // console.log('people ==> ', data);
 
   return (
     <>
@@ -21,7 +27,15 @@ const PeoplePage = () => {
           </div>
           <div className='col-md-8'>
             <div className='py-4'>
-              <Card />
+              {status === 'loading' && <Spinner />}
+              {status === 'error' && <div>ERROR</div>}
+              {status === 'success' &&
+                data &&
+                data.results.map((person) => (
+                  <div className='py-2'>
+                    <Card data={person} />
+                  </div>
+                ))}
             </div>
           </div>
         </div>

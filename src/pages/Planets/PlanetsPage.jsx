@@ -7,7 +7,7 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const PlanetsPage = () => {
   const getPlanets = async () => {
-    const res = await PlanetsService.myFetch();
+    const res = await PlanetsService.getPlanets();
 
     return res.json();
   };

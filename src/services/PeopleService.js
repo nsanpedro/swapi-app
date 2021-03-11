@@ -3,7 +3,7 @@ import { PEOPLE_URL } from '../config/config';
 
 class PeopleService {
   static getPeople() {
-    return axios.get(PEOPLE_URL);
+    return fetch(PEOPLE_URL);
   }
 }
 
