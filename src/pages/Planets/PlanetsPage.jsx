@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import Card from '../../components/Card/Card';
-import PlanetsService from '../../services/PlanetsService';
 import CheckboxComponent from '../../components/Checkbox/Checkbox';
 import { useQuery } from 'react-query';
+import Card from '../../components/Card/Card';
+import PlanetsService from '../../services/PlanetsService';
+import Spinner from '../../components/Spinner/Spinner';
 
 const PlanetsPage = () => {
   const getPlanets = async () => {
@@ -13,7 +14,7 @@ const PlanetsPage = () => {
 
   const { data, status } = useQuery('planets', getPlanets);
 
-  console.log('data ==> ', data);
+  // console.log('data ==> ', data);
 
   return (
     <>
@@ -26,7 +27,15 @@ const PlanetsPage = () => {
           </div>
           <div className='col-md-8'>
             <div className='py-4'>
-              <Card />
+              {status === 'loading' && <Spinner />}
+              {status === 'error' && <div>ERROR</div>}
+              {status === 'success' &&
+                data &&
+                data.results.map((planet) => (
+                  <div className='py-2'>
+                    <Card data={planet} />
+                  </div>
+                ))}
             </div>
           </div>
         </div>
