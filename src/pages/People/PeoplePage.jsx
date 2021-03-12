@@ -14,8 +14,6 @@ const PeoplePage = () => {
 
   const { data, status } = useQuery('people', getPeople);
 
-  // console.log('people ==> ', data);
-
   return (
     <>
       <div className='container'>

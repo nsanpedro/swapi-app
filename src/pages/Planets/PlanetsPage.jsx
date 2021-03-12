@@ -65,7 +65,7 @@ const PlanetsPage = () => {
                     {data &&
                       data.results.map((planet) => (
                         <div className='py-2'>
-                          <Card data={planet} />
+                          <Card data={planet} type={'planet'} />
                         </div>
                       ))}
                   </div>
