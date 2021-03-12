@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FormCheckbox } from 'shards-react';
 import { Link, useLocation } from 'react-router-dom';
 import Select from 'react-select';
 import { selectOptions } from '../../config/config';
 
 const CheckboxComponent = () => {
+  const [sortSelected, setSortSelected] = useState();
   const location = useLocation();
 
   const redirectPath =
     location.pathname === '/planets' ? '/people' : '/planets';
 
   const navigateTo = location.pathname === '/planets' ? 'People' : 'Planets';
+
+  const onSortChange = (option) => {
+    setSortSelected(option.value);
+  };
 
   return (
     <div className='border rounded'>
@@ -31,7 +36,7 @@ const CheckboxComponent = () => {
         </FormCheckbox>{' '}
         <br />
         <p>Sort by:</p>
-        <Select options={selectOptions} />
+        <Select options={selectOptions} onChange={onSortChange} />
       </div>
     </div>
   );
