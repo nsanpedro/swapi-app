@@ -67,8 +67,8 @@ const PeoplePage = () => {
 
                   <div className='py-2'>
                     {data &&
-                      data.results.map((people) => (
-                        <div className='py-2'>
+                      data.results.map((people, i) => (
+                        <div key={i} className='py-2'>
                           <Card data={people} type={'people'} />
                         </div>
                       ))}
