@@ -18,12 +18,20 @@ const Home = () => {
           <div className='py-5'>
             <div className='d-flex justify-content-center'>
               <Link to='/planets'>
-                <Button size='lg' className='mx-4' style={{ width: 300 }}>
+                <Button
+                  size='lg'
+                  className='mx-4'
+                  style={{ width: 300, backgroundColor: '#77cedb' }}
+                >
                   Planets
                 </Button>
               </Link>
               <Link to='/people'>
-                <Button size='lg' className='mx-4' style={{ width: 300 }}>
+                <Button
+                  size='lg'
+                  className='mx-4'
+                  style={{ width: 300, backgroundColor: '#77cedb' }}
+                >
                   People
                 </Button>
               </Link>
