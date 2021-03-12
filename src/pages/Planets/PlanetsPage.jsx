@@ -38,29 +38,36 @@ const PlanetsPage = () => {
               {status === 'error' && <div>ERROR</div>}
               {status === 'success' && (
                 <>
-                  <Button
-                    outline
-                    pill
-                    size='sm'
-                    onClick={() =>
-                      setPageSelected((old) => Math.max(old - 1, 1))
-                    }
-                    disabled={pageSelected === 1}
-                  >
-                    Previous
-                  </Button>
-                  <Badge outline pill theme='light'>
-                    {pageSelected}
-                  </Badge>
-                  <Button
-                    outline
-                    pill
-                    size='sm'
-                    onClick={() => setPageSelected((old) => Math.max(old + 1))}
-                    disabled={!data.next}
-                  >
-                    Next
-                  </Button>
+                  <div className='d-flex'>
+                    <Button
+                      outline
+                      pill
+                      size='sm'
+                      onClick={() =>
+                        setPageSelected((old) => Math.max(old - 1, 1))
+                      }
+                      disabled={pageSelected === 1}
+                    >
+                      Previous
+                    </Button>
+
+                    <div className='mx-3'>
+                      <Badge outline pill theme='light'>
+                        {pageSelected}
+                      </Badge>
+                    </div>
+                    <Button
+                      outline
+                      pill
+                      size='sm'
+                      onClick={() =>
+                        setPageSelected((old) => Math.max(old + 1))
+                      }
+                      disabled={!data.next}
+                    >
+                      Next
+                    </Button>
+                  </div>
                   <div className='py-2'>
                     {data &&
                       data.results.map((planet) => (
