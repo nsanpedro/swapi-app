@@ -1,6 +1,8 @@
 import React from 'react';
-import { FormCheckbox, Button } from 'shards-react';
+import { FormCheckbox } from 'shards-react';
 import { Link, useLocation } from 'react-router-dom';
+import Select from 'react-select';
+import { selectOptions } from '../../config/config';
 
 const CheckboxComponent = () => {
   const location = useLocation();
@@ -26,7 +28,10 @@ const CheckboxComponent = () => {
         </FormCheckbox>
         <FormCheckbox checked={true} onChange={(e) => console.log('checked!')}>
           Kiwi
-        </FormCheckbox>
+        </FormCheckbox>{' '}
+        <br />
+        <p>Sort by:</p>
+        <Select options={selectOptions} />
       </div>
     </div>
   );

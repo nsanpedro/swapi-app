@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Badge } from 'shards-react';
 import { useQuery } from 'react-query';
 import PeopleService from '../../services/PeopleService';
@@ -18,6 +18,10 @@ const PeoplePage = () => {
   const { data, status } = useQuery(['people', pageSelected], getPeople, {
     keepPreviousData: true
   });
+
+  useEffect(() => {
+    getPeople();
+  }, []);
 
   return (
     <>
