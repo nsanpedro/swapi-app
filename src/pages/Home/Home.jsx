@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonGroup } from 'shards-react';
+import { Button } from 'shards-react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
@@ -7,21 +7,27 @@ const Home = () => {
     <div className='container'>
       <div className='row'>
         <div className='col-lg-12 py-4'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit
-            saepe molestias magni laudantium vero in exercitationem cum est
-            ullam eos. Magni, numquam aut! Quod inventore, nemo ut laborum qui
-            libero.
+          <h1 className='text-center'>Welcome to Qu Beyond Swapi Challenge</h1>
+          <div className='text-center'>
+            In this challenge, we need to read from the renowned Swapi API, and
+            display the data in an organized way. <br />
+            In addition we should be able to interact with the data with some
+            way of sorting mechanic. This is the App. <br />
+            Happy Navigation!
           </div>
-          <div>
-            <ButtonGroup size='md' className='mr-2'>
+          <div className='py-5'>
+            <div className='d-flex justify-content-center'>
               <Link to='/planets'>
-                <Button>Planets</Button>
+                <Button size='lg' className='mx-4' style={{ width: 300 }}>
+                  Planets
+                </Button>
               </Link>
               <Link to='/people'>
-                <Button>People</Button>
+                <Button size='lg' className='mx-4' style={{ width: 300 }}>
+                  People
+                </Button>
               </Link>
-            </ButtonGroup>
+            </div>
           </div>
         </div>
       </div>
