@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { Button, Badge } from 'shards-react';
-import CheckboxComponent from '../../components/Checkbox/Checkbox';
+import CheckboxComponent from '../../components/Sort/Sort';
 import Card from '../../components/Card/Card';
 import PlanetsService from '../../services/PlanetsService';
 import Spinner from '../../components/Spinner/Spinner';
