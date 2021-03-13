@@ -4,8 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 import Select from 'react-select';
 import { selectOptions } from '../../config/config';
 
-const CheckboxComponent = () => {
-  const [sortSelected, setSortSelected] = useState();
+const CheckboxComponent = ({ onSortChange }) => {
+  // const [sortSelected, setSortSelected] = useState();
   const location = useLocation();
 
   const redirectPath =
@@ -13,9 +13,9 @@ const CheckboxComponent = () => {
 
   const navigateTo = location.pathname === '/planets' ? 'People' : 'Planets';
 
-  const onSortChange = (option) => {
-    setSortSelected(option.value);
-  };
+  // const onSortChange = (option) => {
+  //   setSortSelected(option.value);
+  // };
 
   return (
     <div className='border rounded'>

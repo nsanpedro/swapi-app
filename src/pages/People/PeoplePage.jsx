@@ -8,6 +8,7 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const PeoplePage = () => {
   const [pageSelected, setPageSelected] = useState(1);
+  const [sortSelected, setSortSelected] = useState('');
 
   const getPeople = async () => {
     const res = await PeopleService.getPeople(pageSelected);
@@ -19,9 +20,50 @@ const PeoplePage = () => {
     keepPreviousData: true
   });
 
+  const onSortChange = (option) => {
+    setSortSelected(option.value);
+  };
+
+  const sortDataAsc = () => {
+    if (data) {
+      const sortedCharacters =
+        data &&
+        data.results &&
+        data.results.sort((a, b) => a.name.localeCompare(b.name));
+
+      return sortedCharacters;
+    }
+  };
+
+  const sortDataDsc = () => {
+    if (data) {
+      const sortedCharacters =
+        data &&
+        data.results &&
+        data.results.sort((a, b) => b.name.localeCompare(a.name));
+
+      return sortedCharacters;
+    }
+  };
+
   useEffect(() => {
     getPeople();
   }, []);
+
+  const cardBodySorted = (type) => {
+    const sortedResults = type === 'asc' ? sortDataAsc() : sortDataDsc();
+
+    return (
+      <div className='py-2'>
+        {data &&
+          sortedResults.map((character, i) => (
+            <div key={i} className='py-2'>
+              <Card data={character} type={'people'} />
+            </div>
+          ))}
+      </div>
+    );
+  };
 
   return (
     <>
@@ -29,7 +71,7 @@ const PeoplePage = () => {
         <div className='row'>
           <div className='col-6 col-md-4'>
             <div className='py-4'>
-              <CheckboxComponent />
+              <CheckboxComponent onSortChange={onSortChange} />
             </div>
           </div>
           <div className='col-md-8'>
@@ -69,14 +111,7 @@ const PeoplePage = () => {
                     </Button>
                   </div>
 
-                  <div className='py-2'>
-                    {data &&
-                      data.results.map((people, i) => (
-                        <div key={i} className='py-2'>
-                          <Card data={people} type={'people'} />
-                        </div>
-                      ))}
-                  </div>
+                  {cardBodySorted(sortSelected)}
                 </>
               )}
             </div>
