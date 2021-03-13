@@ -24,7 +24,7 @@ const CheckboxComponent = () => {
           Navigate To: <Link to='/'>Home</Link> /{' '}
           <Link to={redirectPath}>{navigateTo}</Link>
         </div>
-        <p>Select your favorite fruits:</p>
+        <p className='pt-4'>Select your favorite fruits:</p>
         <FormCheckbox checked={true} onChange={(e) => console.log('checked!')}>
           Orange
         </FormCheckbox>
