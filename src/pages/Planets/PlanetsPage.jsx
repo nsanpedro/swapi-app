@@ -8,6 +8,7 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const PlanetsPage = () => {
   const [pageSelected, setPageSelected] = useState(1);
+  const [sortSelected, setSortSelected] = useState('');
 
   const getPlanets = async () => {
     const res = await PlanetsService.getPlanets(pageSelected);
@@ -18,6 +19,32 @@ const PlanetsPage = () => {
   const { data, status } = useQuery(['planets', pageSelected], getPlanets, {
     keepPreviousData: true
   });
+
+  const onSortChange = (option) => {
+    setSortSelected(option.value);
+  };
+
+  const sortDataAsc = () => {
+    if (data) {
+      const sortedCharacters =
+        data &&
+        data.results &&
+        data.results.sort((a, b) => a.name.localeCompare(b.name));
+
+      return sortedCharacters;
+    }
+  };
+
+  const sortDataDsc = () => {
+    if (data) {
+      const sortedCharacters =
+        data &&
+        data.results &&
+        data.results.sort((a, b) => b.name.localeCompare(a.name));
+
+      return sortedCharacters;
+    }
+  };
 
   useEffect(() => {
     getPlanets();
