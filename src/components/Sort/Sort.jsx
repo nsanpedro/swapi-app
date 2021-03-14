@@ -5,6 +5,7 @@ import {
   selectOptions,
   NAVIGATE_TO,
   SORT_BY,
+  HOME,
   PEOPLE,
   PLANETS,
   PEOPLE_PATH,
@@ -23,7 +24,7 @@ const SortingComponent = ({ onSortChange }) => {
     <div className='border rounded'>
       <div className='mx-3 py-3'>
         <div className='pb-4'>
-          {NAVIGATE_TO} <Link to='/'>Home</Link> /{' '}
+          {NAVIGATE_TO} <Link to='/'>{HOME}</Link> /{' '}
           <Link to={redirectPath}>{navigateTo}</Link>
         </div>
         <p>{SORT_BY}</p>
