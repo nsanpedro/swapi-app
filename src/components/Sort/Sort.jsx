@@ -1,24 +1,32 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Select from 'react-select';
-import { selectOptions } from '../../config/config';
+import {
+  selectOptions,
+  NAVIGATE_TO,
+  SORT_BY,
+  PEOPLE,
+  PLANETS,
+  PEOPLE_PATH,
+  PLANETS_PATH
+} from '../../config/config';
 
 const SortingComponent = ({ onSortChange }) => {
   const location = useLocation();
 
   const redirectPath =
-    location.pathname === '/planets' ? '/people' : '/planets';
+    location.pathname === PLANETS_PATH ? PEOPLE_PATH : PLANETS_PATH;
 
-  const navigateTo = location.pathname === '/planets' ? 'People' : 'Planets';
+  const navigateTo = location.pathname === PLANETS_PATH ? PEOPLE : PLANETS;
 
   return (
     <div className='border rounded'>
       <div className='mx-3 py-3'>
         <div className='pb-4'>
-          Navigate To: <Link to='/'>Home</Link> /{' '}
+          {NAVIGATE_TO} <Link to='/'>Home</Link> /{' '}
           <Link to={redirectPath}>{navigateTo}</Link>
         </div>
-        <p>Sort by:</p>
+        <p>{SORT_BY}</p>
         <Select options={selectOptions} onChange={onSortChange} />
       </div>
     </div>

@@ -1,11 +1,18 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Button, Badge } from 'shards-react';
 import { useQuery } from 'react-query';
+import {
+  NEXT,
+  PREVIOUS,
+  ASC,
+  DSC,
+  DEFAULT,
+  PEOPLE_TYPE
+} from '../../config/config';
 import PeopleService from '../../services/PeopleService';
 import SortComponent from '../../components/Sort/Sort';
 import Card from '../../components/Card/Card';
 import Spinner from '../../components/Spinner/Spinner';
-import { useCallback } from 'react';
 
 const PeoplePage = () => {
   const [pageSelected, setPageSelected] = useState(1);
@@ -17,7 +24,7 @@ const PeoplePage = () => {
     return res.json();
   };
 
-  const { data, status } = useQuery(['people', pageSelected], getPeople, {
+  const { data, status } = useQuery([PEOPLE_TYPE, pageSelected], getPeople, {
     keepPreviousData: true
   });
 
@@ -85,7 +92,7 @@ const PeoplePage = () => {
           onClick={() => setPageSelected((old) => Math.max(old - 1, 1))}
           disabled={pageSelected === 1}
         >
-          Previous
+          {PREVIOUS}
         </Button>
 
         <div className='mx-3'>
@@ -100,7 +107,7 @@ const PeoplePage = () => {
           onClick={() => setPageSelected((old) => Math.max(old + 1))}
           disabled={data && !data.next}
         >
-          Next
+          {NEXT}
         </Button>
       </div>
     ),

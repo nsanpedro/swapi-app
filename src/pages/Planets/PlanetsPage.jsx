@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useQuery } from 'react-query';
 import { Button, Badge } from 'shards-react';
+import { PLANETS_TYPE, NEXT, PREVIOUS } from '../../config/config';
 import SortComponent from '../../components/Sort/Sort';
 import Card from '../../components/Card/Card';
 import PlanetsService from '../../services/PlanetsService';
 import Spinner from '../../components/Spinner/Spinner';
-import { useCallback } from 'react';
 
 const PlanetsPage = () => {
   const [pageSelected, setPageSelected] = useState(1);
@@ -17,7 +17,7 @@ const PlanetsPage = () => {
     return res.json();
   };
 
-  const { data, status } = useQuery(['planets', pageSelected], getPlanets, {
+  const { data, status } = useQuery([PLANETS_TYPE, pageSelected], getPlanets, {
     keepPreviousData: true
   });
 
@@ -85,7 +85,7 @@ const PlanetsPage = () => {
           onClick={() => setPageSelected((old) => Math.max(old - 1, 1))}
           disabled={pageSelected === 1}
         >
-          Previous
+          {PREVIOUS}
         </Button>
 
         <div className='mx-3'>
@@ -100,7 +100,7 @@ const PlanetsPage = () => {
           onClick={() => setPageSelected((old) => Math.max(old + 1))}
           disabled={data && !data.next}
         >
-          Next
+          {NEXT}
         </Button>
       </div>
     ),
