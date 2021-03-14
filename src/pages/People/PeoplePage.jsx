@@ -5,6 +5,7 @@ import PeopleService from '../../services/PeopleService';
 import SortComponent from '../../components/Sort/Sort';
 import Card from '../../components/Card/Card';
 import Spinner from '../../components/Spinner/Spinner';
+import { useCallback } from 'react';
 
 const PeoplePage = () => {
   const [pageSelected, setPageSelected] = useState(1);
@@ -65,7 +66,7 @@ const PeoplePage = () => {
     );
   };
 
-  const navigationComponent = useMemo(
+  const navigationComponent = useCallback(
     () => (
       <div className='py-4'>
         <SortComponent onSortChange={onSortChange} />
@@ -110,7 +111,7 @@ const PeoplePage = () => {
     <>
       <div className='container'>
         <div className='row'>
-          <div className='col-6 col-md-4'>{navigationComponent}</div>
+          <div className='col-6 col-md-4'>{navigationComponent()}</div>
           <div className='col-md-8'>
             <div className='py-4'>
               {status === 'loading' && <Spinner />}
