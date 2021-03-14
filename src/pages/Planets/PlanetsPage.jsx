@@ -1,7 +1,17 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useQuery } from 'react-query';
 import { Button, Badge } from 'shards-react';
-import { PLANETS_TYPE, NEXT, PREVIOUS } from '../../config/config';
+import {
+  PLANETS_TYPE,
+  NEXT,
+  PREVIOUS,
+  SUCCESS_STATUS,
+  LOADING_STATUS,
+  ERROR_STATUS,
+  ASC,
+  DSC,
+  DEFAULT
+} from '../../config/config';
 import SortComponent from '../../components/Sort/Sort';
 import Card from '../../components/Card/Card';
 import PlanetsService from '../../services/PlanetsService';
@@ -9,7 +19,7 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const PlanetsPage = () => {
   const [pageSelected, setPageSelected] = useState(1);
-  const [sortSelected, setSortSelected] = useState('');
+  const [sortSelected, setSortSelected] = useState(ASC);
 
   const getPlanets = async () => {
     const res = await PlanetsService.getPlanets(pageSelected);
@@ -52,7 +62,7 @@ const PlanetsPage = () => {
   }, []);
 
   const cardBodySorted = (type) => {
-    const sortedResults = type === 'asc' ? sortDataAsc() : sortDataDsc();
+    const sortedResults = type === ASC ? sortDataAsc() : sortDataDsc();
 
     return (
       <div className='py-2'>
@@ -72,7 +82,7 @@ const PlanetsPage = () => {
         <SortComponent onSortChange={onSortChange} />
       </div>
     ),
-    [onSortChange]
+    []
   );
 
   const paginationComponent = useMemo(
@@ -114,9 +124,9 @@ const PlanetsPage = () => {
           <div className='col-6 col-md-4'>{navigationComponent()}</div>
           <div className='col-md-8'>
             <div className='py-4'>
-              {status === 'loading' && <Spinner />}
-              {status === 'error' && <div>ERROR</div>}
-              {status === 'success' && (
+              {status === LOADING_STATUS && <Spinner />}
+              {status === ERROR_STATUS && <div>ERROR</div>}
+              {status === SUCCESS_STATUS && (
                 <>
                   {paginationComponent}
                   {cardBodySorted(sortSelected)}

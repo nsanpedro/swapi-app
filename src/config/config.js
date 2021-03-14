@@ -4,11 +4,6 @@ export const PEOPLE_PATH = '/people';
 export const PLANETS_PATH = '/planets';
 export const NAVBAR_COLOR = '#BA343D';
 export const FALLBACK_STRING = 'Loading...';
-export const selectOptions = [
-  { label: 'ASC', value: 'asc' },
-  { label: 'DSC', value: 'dsc' }
-];
-
 export const HOME = 'Home';
 export const NEXT = 'Next';
 export const PREVIOUS = 'Previous';
@@ -21,3 +16,10 @@ export const NAVIGATE_TO = 'Navigate to:';
 export const SORT_BY = 'Sort by:';
 export const PLANETS_TYPE = 'planet';
 export const PEOPLE_TYPE = 'people';
+export const SUCCESS_STATUS = 'success';
+export const LOADING_STATUS = 'loading';
+export const ERROR_STATUS = 'error';
+export const selectOptions = [
+  { label: 'ASC', value: 'asc' },
+  { label: 'DSC', value: 'dsc' }
+];

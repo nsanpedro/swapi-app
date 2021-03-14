@@ -27,7 +27,11 @@ const SortingComponent = ({ onSortChange }) => {
           <Link to={redirectPath}>{navigateTo}</Link>
         </div>
         <p>{SORT_BY}</p>
-        <Select options={selectOptions} onChange={onSortChange} />
+        <Select
+          options={selectOptions}
+          onChange={onSortChange}
+          defaultValue={selectOptions[0]}
+        />
       </div>
     </div>
   );

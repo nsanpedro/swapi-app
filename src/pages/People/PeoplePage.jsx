@@ -7,7 +7,10 @@ import {
   ASC,
   DSC,
   DEFAULT,
-  PEOPLE_TYPE
+  PEOPLE_TYPE,
+  SUCCESS_STATUS,
+  LOADING_STATUS,
+  ERROR_STATUS
 } from '../../config/config';
 import PeopleService from '../../services/PeopleService';
 import SortComponent from '../../components/Sort/Sort';
@@ -16,7 +19,7 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const PeoplePage = () => {
   const [pageSelected, setPageSelected] = useState(1);
-  const [sortSelected, setSortSelected] = useState('');
+  const [sortSelected, setSortSelected] = useState(ASC);
 
   const getPeople = async () => {
     const res = await PeopleService.getPeople(pageSelected);
@@ -59,7 +62,7 @@ const PeoplePage = () => {
   }, []);
 
   const cardBodySorted = (type) => {
-    const sortedResults = type === 'asc' ? sortDataAsc() : sortDataDsc();
+    const sortedResults = type === ASC ? sortDataAsc() : sortDataDsc();
 
     return (
       <div className='py-2'>
@@ -79,7 +82,7 @@ const PeoplePage = () => {
         <SortComponent onSortChange={onSortChange} />
       </div>
     ),
-    [onSortChange]
+    []
   );
 
   const paginationComponent = useMemo(
@@ -121,9 +124,9 @@ const PeoplePage = () => {
           <div className='col-6 col-md-4'>{navigationComponent()}</div>
           <div className='col-md-8'>
             <div className='py-4'>
-              {status === 'loading' && <Spinner />}
-              {status === 'error' && <div>ERROR</div>}
-              {status === 'success' && (
+              {status === LOADING_STATUS && <Spinner />}
+              {status === ERROR_STATUS && <div>ERROR</div>}
+              {status === SUCCESS_STATUS && (
                 <>
                   {paginationComponent}
                   {cardBodySorted(sortSelected)}
