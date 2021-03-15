@@ -1,18 +1,16 @@
 import React from 'react';
 import { Alert } from 'shards-react';
-import { Link } from 'react-router-dom';
+import { DATA_ERROR, BACK_HOME } from '../../config/config';
 
-const ErrorAlert = () => {
-  return (
-    <div>
-      <Alert theme='danger'>
-        Could not Fetch Data, please try again. -{' '}
-        <a className='alert-link' href='/'>
-          Return To Home
-        </a>
-      </Alert>
-    </div>
-  );
-};
+const ErrorAlert = () => (
+  <div>
+    <Alert theme='danger'>
+      {DATA_ERROR} -{' '}
+      <a className='alert-link' href='/'>
+        {BACK_HOME}
+      </a>
+    </Alert>
+  </div>
+);
 
 export default ErrorAlert;

@@ -58,7 +58,7 @@ const PlanetsPage = () => {
 
   useEffect(() => {
     getPlanets();
-  });
+  }, []);
 
   const cardBodySorted = (type) => {
     const sortedResults = type === ASC ? sortDataAsc() : sortDataDsc();

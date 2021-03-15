@@ -19,6 +19,8 @@ export const PEOPLE_TYPE = 'people';
 export const SUCCESS_STATUS = 'success';
 export const LOADING_STATUS = 'loading';
 export const ERROR_STATUS = 'error';
+export const BACK_HOME = 'Return To Home Page';
+export const DATA_ERROR = 'Could not Fetch Data, please try again.';
 export const selectOptions = [
   { label: 'ASC', value: 'asc' },
   { label: 'DSC', value: 'dsc' }
