@@ -17,6 +17,6 @@
 
 - A checkbox filter functionality in addition to sorting.
 - Add unit testing to the app.
-- Have a better design proposal.
+- Have a more appealing design proposal.
 
 Thank you for the opportunity! :smile:
