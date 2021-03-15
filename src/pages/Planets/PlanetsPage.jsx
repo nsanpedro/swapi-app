@@ -8,14 +8,13 @@ import {
   SUCCESS_STATUS,
   LOADING_STATUS,
   ERROR_STATUS,
-  ASC,
-  DSC,
-  DEFAULT
+  ASC
 } from '../../config/config';
 import SortComponent from '../../components/Sort/Sort';
 import Card from '../../components/Card/Card';
 import PlanetsService from '../../services/PlanetsService';
-import Spinner from '../../components/Spinner/Spinner';
+import Fallback from '../../components/Fallback/Fallback';
+import ErrorAlert from '../../components/Error/ErrorAlert';
 
 const PlanetsPage = () => {
   const [pageSelected, setPageSelected] = useState(1);
@@ -67,9 +66,9 @@ const PlanetsPage = () => {
     return (
       <div className='py-2'>
         {data &&
-          sortedResults.map((character, i) => (
+          sortedResults.map((planet, i) => (
             <div key={i} className='py-2'>
-              <Card data={character} type={'people'} />
+              <Card data={planet} type={PLANETS_TYPE} />
             </div>
           ))}
       </div>
@@ -124,8 +123,8 @@ const PlanetsPage = () => {
           <div className='col-6 col-md-4'>{navigationComponent()}</div>
           <div className='col-md-8'>
             <div className='py-4'>
-              {status === LOADING_STATUS && <Spinner />}
-              {status === ERROR_STATUS && <div>ERROR</div>}
+              {status === LOADING_STATUS && <Fallback />}
+              {status === ERROR_STATUS && <ErrorAlert />}
               {status === SUCCESS_STATUS && (
                 <>
                   {paginationComponent}

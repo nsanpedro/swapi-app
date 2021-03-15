@@ -5,8 +5,6 @@ import {
   NEXT,
   PREVIOUS,
   ASC,
-  DSC,
-  DEFAULT,
   PEOPLE_TYPE,
   SUCCESS_STATUS,
   LOADING_STATUS,
@@ -15,7 +13,8 @@ import {
 import PeopleService from '../../services/PeopleService';
 import SortComponent from '../../components/Sort/Sort';
 import Card from '../../components/Card/Card';
-import Spinner from '../../components/Spinner/Spinner';
+import ErrorAlert from '../../components/Error/ErrorAlert';
+import Fallback from '../../components/Fallback/Fallback';
 
 const PeoplePage = () => {
   const [pageSelected, setPageSelected] = useState(1);
@@ -124,8 +123,8 @@ const PeoplePage = () => {
           <div className='col-6 col-md-4'>{navigationComponent()}</div>
           <div className='col-md-8'>
             <div className='py-4'>
-              {status === LOADING_STATUS && <Spinner />}
-              {status === ERROR_STATUS && <div>ERROR</div>}
+              {status === LOADING_STATUS && <Fallback />}
+              {status === ERROR_STATUS && <ErrorAlert />}
               {status === SUCCESS_STATUS && (
                 <>
                   {paginationComponent}

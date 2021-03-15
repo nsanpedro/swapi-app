@@ -1,6 +1,6 @@
 class PlanetsService {
   static getPlanets(page) {
-    return fetch(`http://swapi.dev/api/planets/?page=${page}`);
+    return fetch(`http://swapi.dev/api/planetse/?page=${page}`);
   }
 }
 
