@@ -58,7 +58,7 @@ const PeoplePage = () => {
 
   useEffect(() => {
     getPeople();
-  }, []);
+  });
 
   const cardBodySorted = (type) => {
     const sortedResults = type === ASC ? sortDataAsc() : sortDataDsc();
