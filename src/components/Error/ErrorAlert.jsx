@@ -7,9 +7,9 @@ const ErrorAlert = () => {
     <div>
       <Alert theme='danger'>
         Could not Fetch Data, please try again. -{' '}
-        <Link to='/'>
-          <p className='alert-link'>Return To Home</p>
-        </Link>
+        <a className='alert-link' href='/'>
+          Return To Home
+        </a>
       </Alert>
     </div>
   );
